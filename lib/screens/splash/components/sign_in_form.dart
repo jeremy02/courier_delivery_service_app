@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:courier_delivery_service_app/constants.dart';
 import 'package:courier_delivery_service_app/size_config.dart';
 
+import 'form_error.dart';
+
 class SignInForm extends StatefulWidget {
 	final Key formKey;
 	
-	SignInForm({Key key, @required this.formKey}) : super(key: key);
+	SignInForm({
+		Key key,
+		@required this.formKey
+	}) : super(key: key);
 	
 	@override
 	_SignInFormState createState() => _SignInFormState(formKey);
@@ -60,6 +65,8 @@ class _SignInFormState extends State<SignInForm> {
 					buildFormFields(false),
 					SizedBox(height: getProportionateScreenHeight(20)),
 					buildFormFields(true),
+					SizedBox(height: getProportionateScreenHeight(4)),
+					FormError(errors: errors),
 				],
 			),
 		);
@@ -109,6 +116,26 @@ class _SignInFormState extends State<SignInForm> {
 	
 	TextFormField _buildEmailAddressField() {
 		return TextFormField(
+			keyboardType: TextInputType.emailAddress,
+			onSaved: (newValue) => email = newValue,
+			onChanged: (value) {
+				if (value.isNotEmpty) {
+					removeError(error: kEmailNullError);
+				} else if (emailValidatorRegExp.hasMatch(value)) {
+					removeError(error: kInvalidEmailError);
+				}
+				return null;
+			},
+			validator: (value) {
+				if (value.isEmpty) {
+					addError(error: kEmailNullError);
+					return null; // you can return "" too
+				} else if (!emailValidatorRegExp.hasMatch(value)) {
+					addError(error: kInvalidEmailError);
+					return null; // you can return "" too
+				}
+				return null;
+			},
 			decoration: InputDecoration(
 				hintStyle: TextStyle(
 					fontSize: 16,
@@ -127,6 +154,25 @@ class _SignInFormState extends State<SignInForm> {
 	TextFormField _buildPasswordField() {
 		return TextFormField(
 			obscureText: true,
+			onSaved: (newValue) => password = newValue,
+			onChanged: (value) {
+				if (value.isNotEmpty) {
+					removeError(error: kPassNullError);
+				} else if (value.length >= 8) {
+					removeError(error: kShortPassError);
+				}
+				return null;
+			},
+			validator: (value) {
+				if (value.isEmpty) {
+					addError(error: kPassNullError);
+					return null; // you can return "" too
+				} else if (value.length < 8) {
+					addError(error: kShortPassError);
+					return null; // you can return "" too
+				}
+				return null;
+			},
 			decoration: InputDecoration(
 				hintStyle: TextStyle(
 					fontSize: 16,
@@ -145,18 +191,4 @@ class _SignInFormState extends State<SignInForm> {
 			style: TextStyle(decoration: TextDecoration.none),
 		);
 	}
-	
-//	TextFormField buildPasswordFormField() {
-//		return TextFormField(
-//			obscureText: true,
-//			onSaved: (newValue) => password = newValue,
-//			decoration: InputDecoration(
-//				labelText: "Password",
-//				hintText: "Enter your password",
-//				// If  you are using latest version of flutter then lable text and hint text shown like this
-//				// if you r using flutter less then 1.20.* then maybe this is not working properly
-//				floatingLabelBehavior: FloatingLabelBehavior.always,
-//			),
-//		);
-//	}
 }

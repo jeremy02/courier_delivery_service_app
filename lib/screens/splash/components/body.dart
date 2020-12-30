@@ -1,4 +1,5 @@
 import 'package:courier_delivery_service_app/screens/splash/components/sign_in_form.dart';
+import 'package:courier_delivery_service_app/screens/splash/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:courier_delivery_service_app/constants.dart';
@@ -6,7 +7,12 @@ import 'package:courier_delivery_service_app/size_config.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+	@override
+	_BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
 	
 	final _formKey = GlobalKey<FormState>();
 	
@@ -61,9 +67,7 @@ class Body extends StatelessWidget {
 									iconData: Icons.arrow_forward,
 									press: () {
 										if (_formKey.currentState.validate()) {
-											print("_formKey"+_formKey.toString());
-										}else{
-											print("isinvalid _formKey"+_formKey.toString());
+											Navigator.pushNamed(context, HomeScreen.routeName);
 										}
 									},
 								),
