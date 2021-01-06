@@ -2,7 +2,7 @@
 
 #Design
 
-You can get more on the design from uplabs [link](https://www.uplabs.com/posts/courier-app-delivery-service)
+You can get more on the design from [uplabs](https://www.uplabs.com/posts/courier-app-delivery-service).
 
 **Packages we are using:**
 

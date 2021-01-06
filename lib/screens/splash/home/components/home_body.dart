@@ -1,42 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../size_config.dart';
+import '../components/points_container.dart';
 
-class Body extends StatelessWidget {
+class HomeBody extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return SafeArea(
 			child: Padding(
-				padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+				padding: EdgeInsets.fromLTRB(10, 15, 15, 0),
 				child: Column(
 					children: [
-						Row(
-							mainAxisAlignment: MainAxisAlignment.spaceBetween,
-							children: [
-								IconButton(
-									icon: Icon(
-										Icons.menu,
-										color: Colors.white,
-									),
-									onPressed: () {},
-								),
-								SizedBox(
-									width: getProportionateScreenWidth(100),
-									height: getProportionateScreenHeight(50),
-									child: Container(
-										decoration: BoxDecoration(
-											color: Colors.white,
-											borderRadius: BorderRadius.all(
-												Radius.circular(20.0)
-											)
-										),
-									),
-								),
-							],
-						)
+						buildAppBar(),
+						buildProductsLayout(),
 					],
 				),
 			),
 		);
 	}
+
+    Row buildAppBar() {
+		return Row(
+			mainAxisAlignment: MainAxisAlignment.spaceBetween,
+			children: [
+				IconButton(
+					icon: SvgPicture.asset(
+						"assets/icons/menu.svg",
+						width: getProportionateScreenWidth(14),
+						height: getProportionateScreenWidth(14),
+						color: Colors.white,
+					),
+					onPressed: () {},
+				),
+				PointsContainer(),
+			],
+		);
+    }
+}
+
+Widget buildProductsLayout() {
+	return SingleChildScrollView(
+		child: Column(
+			children: [
+				SizedBox(height: getProportionateScreenHeight(15)),
+			],
+		),
+	);
 }

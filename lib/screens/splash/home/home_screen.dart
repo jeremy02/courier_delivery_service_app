@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 			body: Stack(
 				children: [
 					_buildBackground(),
-					Body(),
+					HomeBody(),
 				],
 			),
 		);
