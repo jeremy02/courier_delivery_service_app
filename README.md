@@ -1,16 +1,15 @@
-# courier_delivery_service_app
+# Courier Delivery Service App - Responsive Flutter UI
 
-A new Flutter project.
+#Design
 
-## Getting Started
+You can get more on the design from uplabs [link](https://www.uplabs.com/posts/courier-app-delivery-service)
 
-This project is a starting point for a Flutter application.
+**Packages we are using:**
 
-A few resources to get you started if this is your first Flutter project:
+- flutter_svg: [link](https://pub.dev/packages/flutter_svg)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+We design two pages one is the login page with validations of email and password,  a home with products list to be delivered. And another one is the product details page provides you more details about the product.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Courier Delivery Service Final UI
+
+![Preview](/preview.png)

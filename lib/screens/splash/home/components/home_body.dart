@@ -6,16 +6,33 @@ class Body extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return SafeArea(
-			child: SingleChildScrollView(
+			child: Padding(
+				padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
 				child: Column(
 					children: [
-						SizedBox(height: getProportionateScreenHeight(20)),
-						Container(
-							width: double.infinity,
-							height: 50,
-							decoration: BoxDecoration(
-								color: Colors.blue
-							),
+						Row(
+							mainAxisAlignment: MainAxisAlignment.spaceBetween,
+							children: [
+								IconButton(
+									icon: Icon(
+										Icons.menu,
+										color: Colors.white,
+									),
+									onPressed: () {},
+								),
+								SizedBox(
+									width: getProportionateScreenWidth(100),
+									height: getProportionateScreenHeight(50),
+									child: Container(
+										decoration: BoxDecoration(
+											color: Colors.white,
+											borderRadius: BorderRadius.all(
+												Radius.circular(20.0)
+											)
+										),
+									),
+								),
+							],
 						)
 					],
 				),
