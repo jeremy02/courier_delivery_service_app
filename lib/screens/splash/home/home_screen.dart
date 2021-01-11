@@ -41,14 +41,5 @@ class HomeScreen extends StatelessWidget {
 			],
 		);
 	}
-	
-//	AppBar buildAppBar() {
-//		return AppBar(
-//			backgroundColor: kPrimaryColor,
-//			centerTitle: false,
-//			elevation: 0,
-//			leading:
-//		);
-//	}
 }
 

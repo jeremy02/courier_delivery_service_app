@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../size_config.dart';
 import '../components/points_container.dart';
+import 'top_container.dart';
 
 class HomeBody extends StatelessWidget {
 	@override
@@ -25,6 +26,9 @@ class HomeBody extends StatelessWidget {
 			mainAxisAlignment: MainAxisAlignment.spaceBetween,
 			children: [
 				IconButton(
+					padding: EdgeInsets.only(
+						left: 0.0,
+					),
 					icon: SvgPicture.asset(
 						"assets/icons/menu.svg",
 						width: getProportionateScreenWidth(14),
@@ -41,10 +45,16 @@ class HomeBody extends StatelessWidget {
 
 Widget buildProductsLayout() {
 	return SingleChildScrollView(
-		child: Column(
-			children: [
-				SizedBox(height: getProportionateScreenHeight(15)),
-			],
-		),
+		child: Padding(
+			padding: EdgeInsets.only(
+				left: 5.0
+			),
+			child: Column(
+				children: [
+					SizedBox(height: getProportionateScreenHeight(15)),
+					TopContainer(),
+				],
+			),
+		)
 	);
 }
