@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+import 'ongoing_button.dart';
 
 class TopContainer extends StatelessWidget {
 	@override
@@ -23,9 +25,13 @@ class TopContainer extends StatelessWidget {
 						children: [
 							_buildTopLayout(),
 							SizedBox(
-								height: getProportionateScreenHeight(10),
+								height: getProportionateScreenHeight(8.0),
 							),
-							_buildMiddleLayout()
+							_buildMiddleLayout(),
+							SizedBox(
+								height: getProportionateScreenHeight(10.0),
+							),
+							_buildBottomLayout(),
 						],
 					),
 				),
@@ -65,7 +71,7 @@ class TopContainer extends StatelessWidget {
 			),
 			child: Container(
 				width: double.infinity,
-				height: 100.0,
+				height: getProportionateScreenHeight(125),
 				decoration: BoxDecoration(
 					image: DecorationImage(
 						image: AssetImage("assets/images/maps_bg.png"),
@@ -77,7 +83,7 @@ class TopContainer extends StatelessWidget {
 						Container(
 							width: getProportionateScreenWidth(100),
 							height: double.infinity,
-							margin: EdgeInsets.all(8.0),
+							margin: EdgeInsets.all(10),
 							decoration: BoxDecoration(
 								borderRadius: BorderRadius.circular(5.0),
 								image: DecorationImage(
@@ -89,10 +95,10 @@ class TopContainer extends StatelessWidget {
 						Container(
 							width: getProportionateScreenWidth(100),
 							height: double.infinity,
-							margin: EdgeInsets.all(8.0),
+							margin: EdgeInsets.all(10),
 							decoration: BoxDecoration(
 								borderRadius: BorderRadius.circular(5.0),
-								color: Colors.black.withOpacity(0.3)
+								color: Colors.black.withOpacity(0.4)
 							),
 							child: Align(
 								alignment: Alignment.bottomCenter,
@@ -106,7 +112,7 @@ class TopContainer extends StatelessWidget {
 										style: TextStyle(
 											color: Colors.white,
 											fontWeight: FontWeight.bold,
-											fontSize: getProportionateScreenWidth(12)
+											fontSize: getProportionateScreenWidth(11)
 										),
 									),
 								)
@@ -115,6 +121,59 @@ class TopContainer extends StatelessWidget {
 					],
 				),
 			),
+		);
+	}
+	
+	Row _buildBottomLayout() {
+		return Row(
+			mainAxisAlignment: MainAxisAlignment.spaceBetween,
+			children: [
+				productDestination(),
+				OngoingButton(
+					bgColor: Colors.lightBlueAccent.withOpacity(0.4),
+					textColor: Colors.indigo,
+					btnText: "on the way".toUpperCase(),
+				),
+			],
+		);
+	}
+	
+	Row productDestination() {
+		return Row(
+			mainAxisAlignment: MainAxisAlignment.spaceBetween,
+			children: [
+				Container(
+					margin: EdgeInsets.only(right: 6.0),
+					child: SvgPicture.asset(
+						"assets/icons/gps.svg",
+						width: getProportionateScreenWidth(16),
+						height: getProportionateScreenHeight(16),
+						color: Colors.blueAccent,
+					),
+				),
+				Column(
+					crossAxisAlignment: CrossAxisAlignment.start,
+					children: [
+						Text(
+							"To:",
+							textAlign: TextAlign.start,
+							style: TextStyle(
+								fontWeight: FontWeight.bold,
+								fontSize: getProportionateScreenWidth(10)
+							),
+						),
+						Text(
+							"Louisiana, United States",
+							textAlign: TextAlign.start,
+							style: TextStyle(
+								color: Colors.black,
+								fontWeight: FontWeight.bold,
+								fontSize: getProportionateScreenWidth(10)
+							),
+						),
+					],
+				)
+			],
 		);
 	}
 }

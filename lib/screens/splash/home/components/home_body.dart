@@ -7,6 +7,8 @@ import 'top_container.dart';
 
 class HomeBody extends StatelessWidget {
 	@override
+	List<String> list = ["Hyderabad", "Visakhapatnam", "Vijayawada"];
+	
 	Widget build(BuildContext context) {
 		return SafeArea(
 			child: Padding(
@@ -14,7 +16,7 @@ class HomeBody extends StatelessWidget {
 				child: Column(
 					children: [
 						buildAppBar(),
-						buildProductsLayout(),
+						buildProductsLayout(list),
 					],
 				),
 			),
@@ -32,7 +34,7 @@ class HomeBody extends StatelessWidget {
 					icon: SvgPicture.asset(
 						"assets/icons/menu.svg",
 						width: getProportionateScreenWidth(14),
-						height: getProportionateScreenWidth(14),
+						height: getProportionateScreenHeight(14),
 						color: Colors.white,
 					),
 					onPressed: () {},
@@ -43,7 +45,7 @@ class HomeBody extends StatelessWidget {
     }
 }
 
-Widget buildProductsLayout() {
+Widget buildProductsLayout(List<String> list) {
 	return SingleChildScrollView(
 		child: Padding(
 			padding: EdgeInsets.only(
@@ -53,6 +55,7 @@ Widget buildProductsLayout() {
 				children: [
 					SizedBox(height: getProportionateScreenHeight(15)),
 					TopContainer(),
+					SizedBox(height: getProportionateScreenHeight(15)),
 				],
 			),
 		)
